@@ -9,9 +9,15 @@ interface BookDetailPageProps {
 }
 
 const getBooks = async (): Promise<BookType[]> => {
-    const res = await fetch("http://localhost:3000//booksData.json");
-    const data = await res.json();
-    return data;
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
+        const data = await res.json();
+        return data;
+    }
+    catch (error) {
+        console.log("Error fetching book data: ", error);
+        return [];
+    }
 }
 
 const BookDetailPage = async({ params }: BookDetailPageProps) => {

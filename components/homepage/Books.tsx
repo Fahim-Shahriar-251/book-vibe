@@ -3,9 +3,15 @@ import BookCard from '@/components/homepage/BookCard';
 import React from 'react';
 
 const getBooks = async (): Promise<BookType[]> => {
-    const res = await fetch("http://localhost:3000//booksData.json");
-    const data = await res.json();
-    return data;
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
+        const data = await res.json();
+        return data;
+    }
+    catch (error) {
+        console.log("Error fetching book data: ", error);
+        return [];
+    }
 }
 
 const HomePageBooks = async () => {
@@ -19,7 +25,7 @@ const HomePageBooks = async () => {
             </h2>
             <div className='grid gap-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-clos-4'>
                 {
-                    booksData.slice(0,9).map(book => {
+                    booksData.slice(0, 9).map(book => {
                         return (
                             <BookCard key={book.bookId} book={book}></BookCard>
                         )
