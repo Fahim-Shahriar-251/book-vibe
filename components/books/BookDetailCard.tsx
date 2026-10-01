@@ -32,6 +32,8 @@ const BookDetailCard = ({ book }: BookDetailCardProps) => {
                     <p>Publisher: <span className='font-bold'>{book.publisher}</span></p>
                     <p>Year of publishing: <span className='font-bold'>{book.yearOfPublishing}</span></p>
                     <p>Rating: <span className='font-bold'>{book.rating}</span></p>
+
+                    
                     <ReadWishlistButton book={book}></ReadWishlistButton>
                 </div>
             </div>
